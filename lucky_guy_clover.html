@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Guy Clover</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e8f5e9 0%, #b9f6ca 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        
+        .clover-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Gentle floating animation */
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 
+         * Each leaf is basically a square with 3 rounded corners 
+         * and one perfectly sharp corner (bottom right corner). 
+         * By pinning and rotating on that sharp corner, we get a beautiful clover shape!
+         */
+        .leaf {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle at 30% 30%, #76FF03, #2E7D32);
+            border-radius: 50% 50% 0 50%;
+            top: 50%;
+            left: 50%;
+            margin-top: -140px;
+            margin-left: -140px;
+            transform-origin: bottom right;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1), 3px 3px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .leaf:hover {
+            filter: brightness(1.1);
+        }
+
+        .leaf-1 { transform: rotate(0deg) scale(1.0); }
+        .leaf-2 { transform: rotate(90deg) scale(1.0); }
+        .leaf-3 { transform: rotate(180deg) scale(1.0); }
+        .leaf-4 { transform: rotate(270deg) scale(1.0); }
+        
+        /* 
+         * Inner leaves for more detail 
+         */
+        .inner-leaf {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #b2ff59, #4caf50);
+            border-radius: 50% 50% 0 50%;
+            top: 50%;
+            left: 50%;
+            margin-top: -80px;
+            margin-left: -80px;
+            transform-origin: bottom right;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .inner-1 { transform: rotate(0deg); }
+        .inner-2 { transform: rotate(90deg); }
+        .inner-3 { transform: rotate(180deg); }
+        .inner-4 { transform: rotate(270deg); }
+
+        .stem {
+            position: absolute;
+            width: 18px;
+            height: 200px;
+            background: linear-gradient(to right, #1b5e20, #4CAF50, #1b5e20);
+            top: 50%;
+            left: 50%;
+            margin-left: -9px;
+            transform-origin: top center;
+            transform: rotate(20deg); /* stem pointing down and slightly right */
+            border-radius: 10px;
+            z-index: -1;
+            box-shadow: 2px 5px 10px rgba(0,0,0,0.3);
+        }
+
+        .text-overlay {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-5deg);
+            font-size: 5rem;
+            font-weight: 900;
+            color: #ffffff;
+            white-space: nowrap;
+            /* Thick vibrant outline and shadow for the text */
+            text-shadow: 
+                4px 4px 0 #1b5e20,
+                -2px -2px 0 #1b5e20,  
+                2px -2px 0 #1b5e20,
+                -2px 2px 0 #1b5e20,
+                2px 2px 0 #1b5e20,
+                0px 10px 20px rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+            pointer-events: none;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) rotate(-5deg) scale(1); }
+            100% { transform: translate(-50%, -50%) rotate(-5deg) scale(1.05); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="clover-container">
+        <!-- Stem -->
+        <div class="stem"></div>
+        
+        <!-- Main Leaves -->
+        <div class="leaf leaf-1"></div>
+        <div class="leaf leaf-2"></div>
+        <div class="leaf leaf-3"></div>
+        <div class="leaf leaf-4"></div>
+        
+        <!-- Inner Details -->
+        <div class="inner-leaf inner-1"></div>
+        <div class="inner-leaf inner-2"></div>
+        <div class="inner-leaf inner-3"></div>
+        <div class="inner-leaf inner-4"></div>
+
+        <!-- Text -->
+        <div class="text-overlay">lucky_guy</div>
+    </div>
+</body>
+</html>
